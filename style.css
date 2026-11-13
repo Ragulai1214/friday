@@ -11,8 +11,8 @@
 .result-controls .share-primary:hover{box-shadow:0 9px 38px #c6282860}
 .result-controls .share-row{margin-top:12px}
 .result-controls .share-row .secondary{min-width:0;flex:1;padding:12px 8px}
-.share-options{max-width:420px;margin:18px auto 0;padding:18px;background:#241c24;border:1px solid #59404a;border-radius:6px;text-align:center}
+
 .share-options p{font-size:12px;line-height:1.8;color:#d3bec8;margin:0 0 14px}
-.share-option-buttons{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+
 .share-option-buttons button{flex:1;min-width:145px}
-@media(max-width:480px){.result-controls .share-primary{font-size:15px}.share-options{padding:14px}.share-option-buttons{flex-direction:column}.share-option-buttons button{width:100%}}
+@media(max-width:480px){.result-controls .share-primary{font-size:15px}}

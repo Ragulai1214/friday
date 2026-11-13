@@ -24,4 +24,14 @@ for(const delay of [0,900,1700,2700]){run('ready();spin()');const before=run('JS
 for(let o=0;o<5;o++){run(`ready(); result={subject:subjects[0],action:actions[0],outcome:outcomes[${o}]};ending();displayResult();`);assert.equal(els.get('outcome').textContent,run(`outcomes[${o}]`));}
 assert.equal(run('shareText().includes("file://")'),false);
 run(`location.protocol='https:';location.href='https://example.test/friday/';`);assert.equal(run('shareText().includes(location.href)'),true);
+// The primary share button directly opens X, with no intermediate UI.
+let openedLink=null;
+document.createElement=()=>{const node=element();node.click=()=>{openedLink={href:node.href,target:node.target,rel:node.rel}};return node};
+run('state=GameState.RESULT');
+els.get('share').events.click();
+assert.ok(openedLink.href.startsWith('https://twitter.com/intent/tweet?text='));
+assert.ok(decodeURIComponent(openedLink.href).includes('https://example.test/friday/'));
+assert.equal(openedLink.target,'_blank');
+assert.ok(openedLink.rel.includes('noopener'));
+console.log('PASS: direct X share opens Web Intent with result and URL.');
 console.log('PASS: 750 combinations, duplicate-click guard, stop timing, 4 skip timings, replay cleanup, all 5 outcomes, share URL.');

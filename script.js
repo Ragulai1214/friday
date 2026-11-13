@@ -262,8 +262,6 @@ function ready() {
   $("spin").hidden=false;
   $("skip").hidden=true;
   $("spin-status").textContent="心の準備は、できましたか。";
-  $("fallback").hidden=true;
-  $("share-options").hidden=true;
   $("image-fallback").hidden=true;
   $("notice").textContent="";
 
@@ -491,101 +489,15 @@ ${result.outcome}
 #13日の金曜日 #13日の金曜日ガチャ${url?"\n"+url:""}`;
 }
 
-function prepareShareText() {
-  const text=shareText();
-  $("share-copy").value=text;
-  return text;
-}
-
-function showShareOptions(
-  message="画像を保存してから、Xの投稿画面で添付してください。"
-) {
-  $("share-options").hidden=false;
-  $("share-guide").textContent=message;
-  prepareShareText();
-}
-
-function canvasToPngFile(canvas) {
-  const data=canvas.toDataURL("image/png");
-  const base64=data.slice(data.indexOf(",")+1);
-  const binary=atob(base64);
-  const bytes=new Uint8Array(binary.length);
-
-  for(let i=0;i<binary.length;i++) {
-    bytes[i]=binary.charCodeAt(i);
-  }
-
-  return new File(
-    [bytes],
-    "friday13-fate.png",
-    {type:"image/png"}
-  );
-}
-
-async function shareResult() {
+// X Web Intent opens the compose screen with text prefilled.
+// Posting still requires the user's confirmation on X.
+function shareResult() {
   if(state!==GameState.RESULT)return;
 
-  const button=$("share");
-  if(button.disabled)return;
+  const url="https://twitter.com/intent/tweet?text="+
+    encodeURIComponent(shareText());
 
-  button.disabled=true;
-  $("notice").textContent="";
-
-  const text=prepareShareText();
-  const version=resultVersion;
-
-  try {
-    if(
-      typeof navigator!=="undefined" &&
-      typeof navigator.share==="function" &&
-      typeof navigator.canShare==="function" &&
-      typeof File!=="undefined"
-    ) {
-      const file=canvasToPngFile(makeImage());
-
-      if(navigator.canShare({files:[file]})) {
-        try {
-          await navigator.share({files:[file],text});
-          if(version===resultVersion && state===GameState.RESULT) {
-            $("notice").textContent="共有処理が完了しました。";
-          }
-          return;
-        } catch(error) {
-          if(error && error.name==="AbortError")return;
-          if(version!==resultVersion || state!==GameState.RESULT)return;
-
-          showShareOptions(
-            "共有できませんでした。画像を保存してXに添付する方法をお試しください。"
-          );
-
-          $("notice").textContent=
-            "共有に失敗しました。別の方法で共有できます。";
-          return;
-        }
-      }
-    }
-
-    if(version===resultVersion && state===GameState.RESULT)showShareOptions();
-  } catch(error) {
-    if(version!==resultVersion || state!==GameState.RESULT)return;
-    showShareOptions(
-      "この環境では画像付き共有を利用できません。画像を保存してXに添付してください。"
-    );
-  } finally {
-    button.disabled=false;
-  }
-}
-
-$("share").addEventListener("click",shareResult);
-
-$("share-x").addEventListener("click",()=>{
-  if(state!==GameState.RESULT)return;
-
-  const text=prepareShareText();
-  const url="https://twitter.com/intent/tweet?text="+encodeURIComponent(text);
-
-  // window.open(..., "noopener") can return null even when the tab opens.
-  // A real anchor with rel=noopener avoids that false failure message.
+  // Keep the navigation synchronous with the click to avoid popup blockers.
   const link=document.createElement("a");
   link.href=url;
   link.target="_blank";
@@ -593,26 +505,9 @@ $("share-x").addEventListener("click",()=>{
   document.body.append(link);
   link.click();
   link.remove();
-  $("notice").textContent="Xの投稿画面が開かない場合は、投稿文をコピーしてください。画像は別途添付してください。";
-});
-
-async function copyShareText() {
-  const text=prepareShareText();
-
-  try {
-    await navigator.clipboard.writeText(text);
-    $("notice").textContent="投稿文をコピーしました。";
-  } catch {
-    $("fallback").hidden=false;
-    $("share-copy").focus();
-    $("share-copy").select();
-    $("notice").textContent=
-      "投稿文を選択しました。手動でコピーしてください。";
-  }
 }
 
-$("copy").addEventListener("click",copyShareText);
-$("share-copy-open").addEventListener("click",copyShareText);
+$("share").addEventListener("click",shareResult);
 
 // ============================================
 // 結果画像生成

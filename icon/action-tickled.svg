@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+  <title id="title">くすぐられて</title>
+  <g transform="rotate(-24 48 48)" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="48" cy="48" r="35" fill="#E6BE65" stroke="#E8E0E5" stroke-width="2.5"/>
+    <!-- Eyes squeezed shut with laughter. -->
+    <path d="M27 30 L38 37 L27 41 M69 30 L58 37 L69 41" fill="none" stroke="#51454D" stroke-width="4"/>
+    <!-- Open laughing mouth, upper teeth and tongue. -->
+    <path d="M25 49 Q48 55 71 49 C69 68 60 77 48 77 C36 77 27 68 25 49 Z" fill="#67475A" stroke="#51454D" stroke-width="2.5"/>
+    <path d="M28 51 Q48 56 68 51 L65 59 Q48 64 31 59 Z" fill="#F5ECDD"/>
+    <path d="M36 72 Q48 62 60 72 Q48 80 36 72 Z" fill="#D9829B"/>
+    <!-- Tears fly outward from both eyes. -->
+    <path d="M23 41 C17 43 6 49 7 57 C8 65 18 65 21 58 C23 53 22 47 23 41 Z" fill="#81C6E2" stroke="#D2EAF2" stroke-width="2"/>
+    <path d="M73 41 C79 43 90 49 89 57 C88 65 78 65 75 58 C73 53 74 47 73 41 Z" fill="#81C6E2" stroke="#D2EAF2" stroke-width="2"/>
+    <path d="M12 54 L15 50 M84 54 L81 50" fill="none" stroke="#E4F5FA" stroke-width="2"/>
+  </g>
+</svg>

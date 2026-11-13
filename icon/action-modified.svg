@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+  <title id="title">改造されて</title>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <!-- Eight equal teeth, symmetric about x=35 and y=48. -->
+    <path d="M25.4329 24.9030 L28.9520 23.7426 L29.4433 16.4862 L40.5567 16.4862 L41.0480 23.7426 L44.5671 24.9030 L47.8760 26.5708 L53.3544 21.7871 L61.2129 29.6456 L56.4292 35.1240 L58.0970 38.4329 L59.2574 41.9520 L66.5138 42.4433 L66.5138 53.5567 L59.2574 54.0480 L58.0970 57.5671 L56.4292 60.8760 L61.2129 66.3544 L53.3544 74.2129 L47.8760 69.4292 L44.5671 71.0970 L41.0480 72.2574 L40.5567 79.5138 L29.4433 79.5138 L28.9520 72.2574 L25.4329 71.0970 L22.1240 69.4292 L16.6456 74.2129 L8.7871 66.3544 L13.5708 60.8760 L11.9030 57.5671 L10.7426 54.0480 L3.4862 53.5567 L3.4862 42.4433 L10.7426 41.9520 L11.9030 38.4329 L13.5708 35.1240 L8.7871 29.6456 L16.6456 21.7871 L22.1240 26.5708 Z" fill="#7F8D99" stroke="#E8E0E5" stroke-width="2.5"/>
+    <circle cx="35" cy="48" r="17" fill="#302D3B" stroke="#E8E0E5" stroke-width="2.5"/>
+    <circle cx="35" cy="48" r="8" fill="#BBC5CF" stroke="#E8E0E5" stroke-width="2"/>
+    <!-- Open head with a straight handle and a gently rounded end. -->
+    <g transform="rotate(35 61 48)">
+      <path d="M54 8 L54 22 L61 27 L68 22 L68 8
+               C77 12 80 22 76 30 Q73 36 67 39
+               L67 82 Q67 88 61 88 Q55 88 55 82
+               L55 39 Q49 36 46 30 C42 22 45 12 54 8 Z"
+            fill="#BBC5CF" stroke="#E8E0E5" stroke-width="2.5"/>
+      <path d="M60 41 L60 79" fill="none" stroke="#8795A1" stroke-width="3"/>
+      <path d="M64 42 L64 78" fill="none" stroke="#D8E0E6" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

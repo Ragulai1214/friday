@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+  <title id="title">成仏</title>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="48" cy="15" rx="22" ry="7" fill="none" stroke="#B9ECF7" stroke-width="3"/>
+    <circle cx="48" cy="57" r="27" fill="#B6E3EF" stroke="#E8E0E5" stroke-width="2.5"/>
+    <path d="M32 51 Q37 57 42 51 M54 51 Q59 57 64 51" fill="none" stroke="#5C8EAA" stroke-width="2"/>
+    <path d="M42 66 Q48 72 54 66" fill="none" stroke="#5C8EAA" stroke-width="2"/>
+    <path d="M11 48 L13 53 L18 55 L13 57 L11 62 L9 57 L4 55 L9 53 Z
+             M85 48 L87 53 L92 55 L87 57 L85 62 L83 57 L78 55 L83 53 Z"
+          fill="#B9ECF7" stroke="#E8E0E5" stroke-width="1.5"/>
+  </g>
+</svg>

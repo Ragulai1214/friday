@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+  <title id="title">間違えて召喚されて</title>
+  <g stroke-linecap="round" stroke-linejoin="round">
+<ellipse cx="48" cy="73" rx="39" ry="13" fill="#625675" stroke="#E8E0E5" stroke-width="2.5"/><ellipse cx="48" cy="73" rx="29" ry="8" fill="none" stroke="#B9A9CC" stroke-width="1.5"/><path d="M20 76 L48 65 L76 76 L29 69 L67 69 Z" fill="none" stroke="#D1BCE4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 57 L17 48 M79 57 L79 48 M29 46 L29 38 M67 46 L67 38" fill="none" stroke="#A897C3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M37 21 C37 5 64 5 64 22 Q64 29 53 35 Q48 38 48 45" fill="none" stroke="#D6C8E8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="48" cy="55" r="3" fill="#D6C8E8" stroke="#D6C8E8" stroke-width="0"/>
+  </g>
+</svg>

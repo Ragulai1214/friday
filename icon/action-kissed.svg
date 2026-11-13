@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+  <title id="title">キスされて</title>
+  <g stroke-linecap="round" stroke-linejoin="round">
+<path d="M10 53 Q22 43 32 35 Q41 31 48 40 Q55 31 64 35 Q75 43 86 53 Q67 77 48 77 Q29 77 10 53 Z" fill="#D9829B" stroke="#E8E0E5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 53 Q29 52 48 56 Q67 52 84 53" fill="none" stroke="#773F58" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 60 Q48 73 69 60" fill="none" stroke="#EAAABD" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(73 21) scale(0.48)"><path d="M0 8 C-18 -4 -20 -17 -10 -21 C-5 -23 -1 -19 0 -16 C2 -21 7 -23 12 -20 C23 -15 17 -2 0 8 Z" fill="#D9829B" stroke="#E8E0E5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+  </g>
+</svg>

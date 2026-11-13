@@ -1,0 +1,27 @@
+/* SVG artwork lives in icon/*.svg; CSS controls only sizing and motion. */
+.fate-icon { display:inline-block; width:64px; height:64px; flex:none; object-fit:contain; vertical-align:middle; }
+.reel { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; }
+.reel-label { display:flex; align-items:center; justify-content:center; min-height:3.1em; line-height:1.5; width:100%; font-size:clamp(13px,2.8vw,20px); }
+.window { height:190px; }
+.result-icons { display:flex; justify-content:center; gap:28px; margin:16px 0 20px; }
+.result-icons .fate-icon { width:76px; height:76px; filter:drop-shadow(0 0 12px #ffffff12); }
+.slot.stopped .fate-icon { animation:icon-stop .4s ease-out; }
+@keyframes icon-stop { 0% { filter:drop-shadow(0 0 10px #ff5252); opacity:.5; } 100% { filter:none; opacity:1; } }
+.result-icons .icon-death { animation:icon-death .65s both; }
+.result-icons .icon-old-age { animation:fade-in 1s both; }
+.result-icons .icon-ascended { animation:icon-rise .8s both; }
+.result-icons .icon-exploded { animation:bounce .4s both; }
+.result-icons .icon-survived { animation:bounce .5s both; }
+@keyframes icon-death { 0%,25% { opacity:0; } 100% { opacity:1; } }
+@keyframes icon-rise { from { transform:translateY(12px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+@media(max-width:480px) {
+  .window { height:180px; }
+  .reel { padding:5px; gap:7px; }
+  .result-icons { gap:20px; }
+  .result-icons .fate-icon { width:64px; height:64px; }
+  .reel-label { font-size:13px; min-height:4.5em; }
+  .reel .fate-icon { width:56px; height:56px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .slot.stopped .fate-icon,.result-icons .fate-icon { animation:none!important; }
+}

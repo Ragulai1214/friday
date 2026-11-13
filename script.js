@@ -6,6 +6,41 @@ const GameState = Object.freeze({INTRO:"intro",READY:"ready",SPINNING:"spinning"
 const $ = id => document.getElementById(id);
 const slots = [...document.querySelectorAll(".slot")];
 const pools = [subjects,actions,outcomes];
+// The icon order follows the original candidate arrays. Icons are decorative;
+// the adjacent text remains the accessible source of the result.
+const iconNames = [
+  ["jason","grandma","kappa","alien","cat","friends","baby","santa","sato","ghost"],
+  ["punched","eaten","hugged","kissed","praised","ignored","scolded","laughed","overloved","summoned","modified","apprenticed","tickled","spoiled","fired"],
+  ["death","old-age","ascended","exploded","survived"]
+];
+const iconGroups = ["subject", "action", "outcome"];
+function iconPath(category, index) {
+  return `./icon/${iconGroups[category]}-${iconNames[category][index]}.svg`;
+}
+function createIcon(category, value) {
+  const index = pools[category].indexOf(value);
+  const icon = document.createElement("img");
+  icon.className = "fate-icon icon-" + iconNames[category][index];
+  icon.src = iconPath(category, index);
+  icon.alt = "";
+  icon.width = 64;
+  icon.height = 64;
+  icon.draggable = false;
+  icon.setAttribute("aria-hidden", "true");
+  return icon;
+}
+// Warm the browser cache during the introduction to avoid first-spin flashes.
+const iconPreloads = iconNames.flatMap((names, category) => names.map((_, index) => {
+  const image = document.createElement("img");
+  image.src = iconPath(category, index);
+  return image;
+}));
+function renderReel(index, value, settled = false) {
+  const label = document.createElement("span");
+  label.className = "reel-label";
+  label.textContent = value + (settled && index === 0 ? "に" : "");
+  slots[index].querySelector(".reel").replaceChildren(createIcon(index, value), label);
+}
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 let state = GameState.INTRO, result = null, spinCount = 0, stopped = [false,false,false];
 let timers = new Set(), frame = 0, introTimer = 0, imageURL = null, effectPlayed = false;
@@ -35,7 +70,7 @@ function resetEffects() { document.body.classList.remove("aged","shake");$("effe
 function ready() { clearTimers();sound.stop();resetEffects();effectPlayed=false;showScreen(GameState.READY);slots.forEach(slot=>{slot.className="slot";slot.querySelector(".reel").textContent="？？？";});$("spin").hidden=false;$("skip").hidden=true;$("spin-status").textContent="心の準備は、できましたか。";$("fallback").hidden=true;$("image-fallback").hidden=true;$("notice").textContent="";if(imageURL){URL.revokeObjectURL(imageURL);imageURL=null;}$("spin").focus(); }
 $("next").addEventListener("click",()=>{finishIntro();sound.unlock();ready();});
 $("again").addEventListener("click",ready);
-function stopSlot(index) { if(stopped[index])return;stopped[index]=true;slots[index].className="slot stopped";slots[index].querySelector(".reel").textContent=[result.subject+"に",result.action,result.outcome][index];sound.tone(650,.06,"triangle",.055,0,170); }
+function stopSlot(index) { if(stopped[index])return;stopped[index]=true;slots[index].className="slot stopped";renderReel(index,[result.subject,result.action,result.outcome][index],true);sound.tone(650,.06,"triangle",.055,0,170); }
 function ending(short=false) {
   if(effectPlayed)return;effectPlayed=true;const value=result.outcome;sound.ending(value);
   if(value==="老衰")document.body.classList.add("aged");
@@ -44,12 +79,12 @@ function ending(short=false) {
   if(value==="爆散"&&!reducedMotion.matches)document.body.classList.add("shake");
   if(["成仏","爆散"].includes(value)&&!reducedMotion.matches){for(let i=0;i<(short?12:32);i++){const p=document.createElement("i");p.className="particle";const angle=Math.random()*Math.PI*2,range=80+Math.random()*260;p.style.setProperty("--x",`${Math.cos(angle)*range}px`);p.style.setProperty("--y",`${value==="成仏"?-range:Math.sin(angle)*range}px`);p.style.setProperty("--particle-color",value==="成仏"?"#81d4fa":"#ff5252");$("particles").append(p);}later(()=>$("particles").replaceChildren(),1000);}
 }
-function displayResult() { cancelAnimationFrame(frame);showScreen(GameState.RESULT);$("result").dataset.outcome=result.outcome;$("subject").textContent=result.subject+"に";$("action").textContent=result.action;$("outcome").textContent=result.outcome;$("again").focus(); }
+function displayResult() { cancelAnimationFrame(frame);showScreen(GameState.RESULT);$("result").dataset.outcome=result.outcome;$("result-icons").replaceChildren(...[result.subject,result.action,result.outcome].map((value,index)=>createIcon(index,value)));$("subject").textContent=result.subject+"に";$("action").textContent=result.action;$("outcome").textContent=result.outcome;$("again").focus(); }
 function spin() {
   if(state!==GameState.READY)return;
   clearTimers();resetEffects();sound.unlock();result=generateResult();spinCount++;stopped=[false,false,false];effectPlayed=false;showScreen(GameState.SPINNING);$("spin").hidden=true;$("skip").hidden=false;$("skip").focus();$("spin-status").textContent="あなたの運命を、選んでいます。";
   sound.startLoop("spin");slots.forEach(slot=>slot.className="slot spinning");const start=performance.now(),last=[0,0,0],indices=[0,0,0],ends=[800,1600,2600];
-  function animate(now){if(state!==GameState.SPINNING)return;const elapsed=now-start;slots.forEach((slot,i)=>{if(stopped[i])return;const remaining=ends[i]-elapsed,pace=remaining<300?150:65;slot.style.setProperty("--speed",`${pace}ms`);if(now-last[i]>pace){slot.querySelector(".reel").textContent=pools[i][indices[i]++%pools[i].length];last[i]=now;}});frame=requestAnimationFrame(animate);}
+  function animate(now){if(state!==GameState.SPINNING)return;const elapsed=now-start;slots.forEach((slot,i)=>{if(stopped[i])return;const remaining=ends[i]-elapsed,pace=remaining<300?150:65;slot.style.setProperty("--speed",`${pace}ms`);if(now-last[i]>pace){renderReel(i,pools[i][indices[i]++%pools[i].length]);last[i]=now;}});frame=requestAnimationFrame(animate);}
   frame=requestAnimationFrame(animate);later(()=>stopSlot(0),800);later(()=>{sound.stop();stopSlot(1);$("spin-status").textContent="そして、あなたは……";},1600);later(()=>{stopSlot(2);ending();},2600);later(displayResult,2900);
 }
 $("spin").addEventListener("click",spin);

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+  <title id="title">なぜか大丈夫だった</title>
+  <g stroke-linecap="round" stroke-linejoin="round">
+<path d="M48 9 L80 22 L76 54 Q72 73 48 87 Q24 73 20 54 L16 22 Z" fill="#669D77" stroke="#A7D6AB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M48 18 L71 28 L68 52 Q65 66 48 77 Q31 66 28 52 L25 28 Z" fill="#79B88A" stroke="#A7D6AB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 47 L43 58 L65 35" fill="none" stroke="#F0F1D8" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(83 13) scale(0.5)"><path d="M0 -11 L3 -3 L11 0 L3 3 L0 11 L-3 3 L-11 0 L-3 -3 Z" fill="#D9E3AA" stroke="#E8E0E5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+  </g>
+</svg>

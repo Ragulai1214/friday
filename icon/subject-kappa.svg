@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+  <title id="title">河童</title>
+  <g stroke-linecap="round" stroke-linejoin="round">
+<path d="M17 85 Q17 63 31 61 L65 61 Q79 63 79 85 Z" fill="#6E917B" stroke="#E8E0E5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="48" cy="43" rx="25" ry="27" fill="#8AAE83" stroke="#E8E0E5" stroke-width="2.5"/><path d="M23 26 L16 22 L26 18 L27 10 L38 15 L48 7 L58 15 L69 10 L70 18 L80 22 L73 27" fill="#638468" stroke="#E8E0E5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="48" cy="21" rx="23" ry="8" fill="#B9C9A0" stroke="#E8E0E5" stroke-width="2.5"/><ellipse cx="48" cy="20" rx="15" ry="4" fill="#D4DBBB" stroke="none" stroke-width="0"/><circle cx="38" cy="43" r="2.2" fill="#51454D" stroke="#51454D" stroke-width="0"/><circle cx="58" cy="43" r="2.2" fill="#51454D" stroke="#51454D" stroke-width="0"/><path d="M32 52 Q48 40 64 52 Q48 66 32 52 Z" fill="#CBBB83" stroke="#E8E0E5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M34 53 L62 53" fill="none" stroke="#857451" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M34 76 Q48 66 62 76" fill="none" stroke="#B9C9A0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

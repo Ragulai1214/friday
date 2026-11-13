@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+  <title id="title">抱きしめられて</title>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M48 81 C37 72 10 53 10 32 C10 10 36 7 48 25 C60 7 86 10 86 32 C86 53 59 72 48 81 Z" fill="#D9829B" stroke="#E8E0E5" stroke-width="2.5"/>
+    <path d="M20 31 C20 22 29 19 35 24 M76 31 C76 22 67 19 61 24" fill="none" stroke="#EDB2C3" stroke-width="2.5"/>
+  </g>
+</svg>

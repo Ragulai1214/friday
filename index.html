@@ -1,52 +1,292 @@
+
 <!doctype html>
 <html lang="ja">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#111014">
-  <meta name="description" content="今日は13日の金曜日。3つのスロットが決める、あなたの理不尽な運命。750通りのホラーガチャ。">
+  <meta
+    name="description"
+    content="今日は13日の金曜日。3つのスロットが決める、あなたの理不尽な運命。750通りのホラーガチャ。"
+  >
+
   <title>13日の金曜日ガチャ</title>
+
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./icons.css">
   <script src="./script.js" defer></script>
 </head>
+
 <body>
   <div class="ambient" aria-hidden="true"></div>
-  <header class="topbar"><span class="brand">FRIDAY <b>13</b> / FATE MACHINE</span><button id="sound" class="sound" aria-pressed="true" aria-label="音声をオフにする">SOUND <span>ON</span></button></header>
+
+  <!-- ヘッダー -->
+  <header class="topbar">
+    <span class="brand">
+      FRIDAY <b>13</b> / FATE MACHINE
+    </span>
+
+    <button
+      id="sound"
+      class="sound"
+      aria-pressed="true"
+      aria-label="音声をオフにする"
+    >
+      SOUND <span>ON</span>
+    </button>
+  </header>
+
   <main>
+
+    <!-- 導入画面 -->
     <section id="intro" class="intro" aria-label="導入">
-      <div class="date-mark" aria-hidden="true">13<span>FRIDAY</span></div>
-      <p id="intro-text" aria-live="polite"></p>
-      <p class="intro-hint">クリック・タップで全文表示</p>
-      <button id="next" class="primary" hidden>次へ <span aria-hidden="true">→</span></button>
-    </section>
-    <section id="game" hidden aria-label="運命のスロット">
-      <div class="heading"><p class="eyebrow"><span class="signal"></span> THE UNLUCKIEST DAY OF YOUR LIFE</p><h1>13日の金曜日<span>ガチャ</span></h1><p class="subtitle">悪い予感ほど、よく当たる。</p></div>
-      <div class="machine">
-        <div class="machine-top"><span>FATE SELECTOR</span><span>NO. 013 <i aria-hidden="true">●</i></span></div>
-        <div class="slots" aria-label="抽選スロット">
-          <div class="slot"><div class="slot-label"><span>01</span> 誰に</div><div class="window"><div class="reel">？？？</div></div><div class="slot-light"></div></div>
-          <div class="slot"><div class="slot-label"><span>02</span> 何をされて</div><div class="window"><div class="reel">？？？</div></div><div class="slot-light"></div></div>
-          <div class="slot"><div class="slot-label"><span>03</span> どうなる</div><div class="window"><div class="reel">？？？</div></div><div class="slot-light"></div></div>
-        </div>
-        <div class="machine-bottom"><span>750 POSSIBLE FATES</span><span>運命に、例外はない。</span></div>
+      <div class="date-mark" aria-hidden="true">
+        13
+        <span>FRIDAY</span>
       </div>
-      <div class="controls"><p id="spin-status" role="status">心の準備は、できましたか。</p><button id="spin" class="primary">運命を決める <span aria-hidden="true">↗</span></button><button id="skip" class="secondary" hidden>スキップ →</button></div>
-      <p class="fineprint">誰に × 何をされて × どうなる<br>あなたを待つ、750通りの理不尽。</p>
+
+      <p id="intro-text" aria-live="polite"></p>
+
+      <p class="intro-hint">
+        クリック・タップで全文表示
+      </p>
+
+      <button id="next" class="primary" hidden>
+        次へ
+        <span aria-hidden="true">→</span>
+      </button>
     </section>
-    <section id="result" class="result" hidden aria-label="抽選結果">
-      <p class="eyebrow">YOUR FATE HAS BEEN SEALED</p><p class="result-lead">あなたは……</p>
-      <div id="result-icons" class="result-icons" aria-hidden="true"></div>
-      <div id="result-text" class="result-text" role="status"><p id="subject"></p><p id="action"></p><p id="outcome"></p></div>
-      <p class="result-caption">これも、13日の金曜日のせい。</p>
-      <div class="result-controls"><button id="again" class="primary">もう一度回す <span aria-hidden="true">↻</span></button><div class="share-row"><button id="save" class="secondary">↓ 画像を保存</button><button id="share" class="secondary">Xで共有 ↗</button></div></div>
-      <p class="fineprint">画像は保存してから、投稿に添付できます。</p>
-      <div id="fallback" hidden><label for="share-copy">投稿文をコピーして共有してください</label><textarea id="share-copy" readonly rows="5"></textarea><button id="copy" class="secondary">投稿文をコピー</button></div>
-      <div id="image-fallback" hidden><p>画像を長押し、または右クリックで保存できます。</p><img id="saved-image" alt="今回の運命の結果画像"></div>
+
+    <!-- ガチャ画面 -->
+    <section id="game" hidden aria-label="運命のスロット">
+
+      <!-- タイトル -->
+      <div class="heading">
+        <p class="eyebrow">
+          <span class="signal"></span>
+          THE UNLUCKIEST DAY OF YOUR LIFE
+        </p>
+
+        <h1>
+          13日の金曜日<span>ガチャ</span>
+        </h1>
+
+        <p class="subtitle">
+          悪い予感ほど、よく当たる。
+        </p>
+      </div>
+
+      <!-- スロットマシン -->
+      <div class="machine">
+
+        <div class="machine-top">
+          <span>FATE SELECTOR</span>
+          <span>
+            NO. 013
+            <i aria-hidden="true">●</i>
+          </span>
+        </div>
+
+        <div class="slots" aria-label="抽選スロット">
+
+          <!-- スロット1：誰に -->
+          <div class="slot">
+            <div class="slot-label">
+              <span>01</span>
+              誰に
+            </div>
+
+            <div class="window">
+              <div class="reel">？？？</div>
+            </div>
+
+            <div class="slot-light"></div>
+          </div>
+
+          <!-- スロット2：何をされて -->
+          <div class="slot">
+            <div class="slot-label">
+              <span>02</span>
+              何をされて
+            </div>
+
+            <div class="window">
+              <div class="reel">？？？</div>
+            </div>
+
+            <div class="slot-light"></div>
+          </div>
+
+          <!-- スロット3：どうなる -->
+          <div class="slot">
+            <div class="slot-label">
+              <span>03</span>
+              どうなる
+            </div>
+
+            <div class="window">
+              <div class="reel">？？？</div>
+            </div>
+
+            <div class="slot-light"></div>
+          </div>
+
+        </div>
+
+        <div class="machine-bottom">
+          <span>750 POSSIBLE FATES</span>
+          <span>運命に、例外はない。</span>
+        </div>
+      </div>
+
+      <!-- ガチャ操作 -->
+      <div class="controls">
+        <p id="spin-status" role="status">
+          心の準備は、できましたか。
+        </p>
+
+        <button id="spin" class="primary">
+          運命を決める
+          <span aria-hidden="true">↗</span>
+        </button>
+
+        <button id="skip" class="secondary" hidden>
+          スキップ →
+        </button>
+      </div>
+
+      <p class="fineprint">
+        誰に × 何をされて × どうなる
+        <br>
+        あなたを待つ、750通りの理不尽。
+      </p>
+
+    </section>
+
+    <!-- 結果画面 -->
+    <section
+      id="result"
+      class="result"
+      hidden
+      aria-label="抽選結果"
+    >
+
+      <p class="eyebrow">
+        YOUR FATE HAS BEEN SEALED
+      </p>
+
+      <p class="result-lead">
+        あなたは……
+      </p>
+
+      <!-- 結果アイコン -->
+      <div
+        id="result-icons"
+        class="result-icons"
+        aria-hidden="true"
+      ></div>
+
+      <!-- 結果テキスト -->
+      <div
+        id="result-text"
+        class="result-text"
+        role="status"
+      >
+        <p id="subject"></p>
+        <p id="action"></p>
+        <p id="outcome"></p>
+      </div>
+
+      <p class="result-caption">
+        これも、13日の金曜日のせい。
+      </p>
+
+      <!-- 結果画面の操作 -->
+      <div class="result-controls">
+
+        <button id="share" class="primary">
+          結果をシェアする ↗
+        </button>
+
+        <div class="share-row">
+          <button id="again" class="secondary">
+            ↻ もう一度回す
+          </button>
+
+          <button id="save" class="secondary">
+            ↓ 画像を保存
+          </button>
+        </div>
+
+      </div>
+
+      <!-- 共有方法の選択 -->
+      <div id="share-options" hidden>
+
+        <p id="share-guide"></p>
+
+        <div class="share-row">
+          <button id="share-x" class="secondary">
+            Xで投稿する ↗
+          </button>
+
+          <button id="share-copy-open" class="secondary">
+            投稿文をコピー
+          </button>
+        </div>
+
+      </div>
+
+      <!-- 投稿文コピーの代替UI -->
+      <div id="fallback" hidden>
+
+        <label for="share-copy">
+          投稿文をコピーして共有してください
+        </label>
+
+        <textarea
+          id="share-copy"
+          readonly
+          rows="5"
+        ></textarea>
+
+        <button id="copy" class="secondary">
+          投稿文をコピー
+        </button>
+
+      </div>
+
+      <!-- 画像保存の代替UI -->
+      <div id="image-fallback" hidden>
+
+        <p>
+          画像を長押し、または右クリックで保存できます。
+        </p>
+
+        <img
+          id="saved-image"
+          alt="今回の運命の結果画像"
+        >
+
+      </div>
+
+      <!-- 通知メッセージ -->
       <p id="notice" role="status"></p>
+
     </section>
+
   </main>
-  <footer><span>FRIDAY THE 13TH GACHA</span><span>幸運を、祈ります。</span></footer>
-  <div id="effect" aria-hidden="true"></div><div id="particles" aria-hidden="true"></div>
+
+  <!-- フッター -->
+  <footer>
+    <span>FRIDAY THE 13TH GACHA</span>
+    <span>幸運を、祈ります。</span>
+  </footer>
+
+  <!-- 演出用要素 -->
+  <div id="effect" aria-hidden="true"></div>
+  <div id="particles" aria-hidden="true"></div>
+
 </body>
 </html>

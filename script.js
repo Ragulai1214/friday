@@ -68,6 +68,7 @@ let timers = new Set();
 let frame = 0;
 let introTimer = 0;
 let imageURL = null;
+let resultVersion = 0; // Invalidates pending share/save callbacks on replay.
 let effectPlayed = false;
 
 function later(fn,ms) {
@@ -246,6 +247,7 @@ function resetEffects() {
 }
 
 function ready() {
+  resultVersion++;
   clearTimers();
   sound.stop();
   resetEffects();
@@ -530,6 +532,7 @@ async function shareResult() {
   $("notice").textContent="";
 
   const text=prepareShareText();
+  const version=resultVersion;
 
   try {
     if(
@@ -543,10 +546,13 @@ async function shareResult() {
       if(navigator.canShare({files:[file]})) {
         try {
           await navigator.share({files:[file],text});
-          $("notice").textContent="共有メニューを開きました。";
+          if(version===resultVersion && state===GameState.RESULT) {
+            $("notice").textContent="共有処理が完了しました。";
+          }
           return;
         } catch(error) {
           if(error && error.name==="AbortError")return;
+          if(version!==resultVersion || state!==GameState.RESULT)return;
 
           showShareOptions(
             "共有できませんでした。画像を保存してXに添付する方法をお試しください。"
@@ -559,8 +565,9 @@ async function shareResult() {
       }
     }
 
-    showShareOptions();
+    if(version===resultVersion && state===GameState.RESULT)showShareOptions();
   } catch(error) {
+    if(version!==resultVersion || state!==GameState.RESULT)return;
     showShareOptions(
       "この環境では画像付き共有を利用できません。画像を保存してXに添付してください。"
     );
@@ -575,22 +582,18 @@ $("share-x").addEventListener("click",()=>{
   if(state!==GameState.RESULT)return;
 
   const text=prepareShareText();
+  const url="https://twitter.com/intent/tweet?text="+encodeURIComponent(text);
 
-  try {
-    const popup=window.open(
-      "https://twitter.com/intent/tweet?text="+encodeURIComponent(text),
-      "_blank",
-      "noopener,noreferrer"
-    );
-
-    if(!popup) {
-      $("notice").textContent=
-        "投稿画面が開かない場合は、投稿文をコピーしてください。";
-    }
-  } catch {
-    $("notice").textContent=
-      "投稿画面が開けません。投稿文をコピーして共有してください。";
-  }
+  // window.open(..., "noopener") can return null even when the tab opens.
+  // A real anchor with rel=noopener avoids that false failure message.
+  const link=document.createElement("a");
+  link.href=url;
+  link.target="_blank";
+  link.rel="noopener noreferrer";
+  document.body.append(link);
+  link.click();
+  link.remove();
+  $("notice").textContent="Xの投稿画面が開かない場合は、投稿文をコピーしてください。画像は別途添付してください。";
 });
 
 async function copyShareText() {
@@ -673,11 +676,17 @@ function makeImage() {
 
 $("save").addEventListener("click",()=>{
   if(state!==GameState.RESULT)return;
+  const version=resultVersion;
+  const saveButton=$("save");
+  if(saveButton.disabled)return;
+  saveButton.disabled=true;
 
   try {
     const canvas=makeImage();
 
     canvas.toBlob(blob=>{
+      saveButton.disabled=false;
+      if(version!==resultVersion || state!==GameState.RESULT)return;
       if(!blob) {
         $("notice").textContent=
           "画像を生成できませんでした。もう一度お試しください。";
@@ -704,6 +713,7 @@ $("save").addEventListener("click",()=>{
     },"image/png");
 
   } catch {
+    saveButton.disabled=false;
     $("notice").textContent=
       "画像を保存できませんでした。画面のスクリーンショットをご利用ください。";
   }

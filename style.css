@@ -4,3 +4,15 @@
 @keyframes roll{from{transform:translateY(-70%);opacity:.4}to{transform:translateY(70%);opacity:.8}}@keyframes bounce{0%{transform:translateY(-15px)}60%{transform:translateY(5px)}100%{transform:translateY(0)}}@keyframes stop-flash{0%{box-shadow:inset 0 0 45px #ff525280}100%{box-shadow:inset 0 12px 24px #0009}}@keyframes veil{0%,15%{opacity:1}100%{opacity:0}}@keyframes flash{0%{opacity:.3}100%{opacity:0}}@keyframes fade-in{from{opacity:0}to{opacity:1}}@keyframes shake{0%,100%{transform:translate(0)}20%{transform:translate(-8px,4px)}40%{transform:translate(7px,-5px)}60%{transform:translate(-6px,-2px)}80%{transform:translate(5px,3px)}}@keyframes particle{to{transform:translate(var(--x),var(--y));opacity:0}}
 @media(max-width:480px){.topbar{padding:12px 16px}.brand{font-size:8px;letter-spacing:1px}main{padding:24px 0}.heading{margin-bottom:24px}.eyebrow{font-size:8px;letter-spacing:1.5px}.machine{padding:20px 12px 14px}.slots{gap:7px}.slot-label{font-size:10px;gap:5px}.window{height:140px}.machine-bottom{font-size:7px;letter-spacing:.4px}.subtitle{letter-spacing:2px}footer{padding:14px 16px;font-size:8px}.result-lead{margin-top:20px}.date-mark{font-size:110px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.slot.spinning .reel{filter:none}#effect,#particles{display:none}}
+
+/* Result sharing: primary CTA first, with a clear non-native fallback. */
+.result-controls{max-width:420px}
+.result-controls .share-primary{width:100%;max-width:none;justify-content:center;gap:18px;font-size:16px;box-shadow:0 8px 32px #c6282840,inset 0 1px #ffffff30}
+.result-controls .share-primary:hover{box-shadow:0 9px 38px #c6282860}
+.result-controls .share-row{margin-top:12px}
+.result-controls .share-row .secondary{min-width:0;flex:1;padding:12px 8px}
+.share-options{max-width:420px;margin:18px auto 0;padding:18px;background:#241c24;border:1px solid #59404a;border-radius:6px;text-align:center}
+.share-options p{font-size:12px;line-height:1.8;color:#d3bec8;margin:0 0 14px}
+.share-option-buttons{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.share-option-buttons button{flex:1;min-width:145px}
+@media(max-width:480px){.result-controls .share-primary{font-size:15px}.share-options{padding:14px}.share-option-buttons{flex-direction:column}.share-option-buttons button{width:100%}}
